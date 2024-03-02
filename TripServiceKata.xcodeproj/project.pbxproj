@@ -59,7 +59,7 @@
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		"TripServiceKata::TripServiceKata::Product" /* TripServiceKata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TripServiceKata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"TripServiceKata::TripServiceKataTests::Product" /* TripServiceKataTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = TripServiceKataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"TripServiceKata::TripServiceKataTests::Product" /* TripServiceKataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = TripServiceKataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +196,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"TripServiceKata::TripServiceKata" = {
+						LastSwiftMigration = "";
+					};
+					"TripServiceKata::TripServiceKataTests" = {
+						LastSwiftMigration = "";
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "TripServiceKata" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -299,8 +307,11 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = TripServiceKata.xcodeproj/TripServiceKataTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = TripServiceKataTests;
 			};
@@ -339,8 +350,11 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = TripServiceKata.xcodeproj/TripServiceKataTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = TripServiceKataTests;
 			};

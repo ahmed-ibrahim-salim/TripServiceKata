@@ -2,9 +2,13 @@ import XCTest
 @testable import TripServiceKata
 
 class TripServiceKataTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        XCTAssertTrue(true)
+    
+    // starting with getting any output from this TripService class functions
+    func test_getTripsByUser() throws {
+        let user = User()
+        let trips = try TripService().getTripsByUser(user)
+        
+        XCTAssertEqual(trips?.count, 2)
     }
+    
 }
