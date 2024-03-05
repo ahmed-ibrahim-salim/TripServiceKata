@@ -5,7 +5,7 @@ class TripService
     func getTripsByUser(_ user:User) throws -> [Trip]?
     {
         var tripList:[Trip]? = nil
-        let loggedUser = try! UserSession.sharedInstance.getLoggedUser()
+        let loggedUser = try! getLoggedUser()
         
         var isFriend = false
         
@@ -17,12 +17,20 @@ class TripService
                 }
             }
             if isFriend {
-                tripList = try! TripDAO.findTripsByUser(user)
+                tripList = try! findTripsByUser(user)
             }
             return tripList
         }
         else {
             throw TripServiceErrorType.userNotLoggedIn
         }
+    }
+    
+    func getLoggedUser() throws -> User?{
+        try! UserSession.sharedInstance.getLoggedUser()
+    }
+    
+    func findTripsByUser(_ user: User) throws -> [Trip]?{
+        try! TripDAO.findTripsByUser(user)
     }
 }
