@@ -2,9 +2,9 @@ import Foundation
 
 class TripService
 {
-    func getTripsByUser(_ user:User) throws -> [Trip]?
+    func getTripsByUser(_ user: User) throws -> [Trip]?
     {
-        var tripList:[Trip]? = nil
+        var tripList: [Trip]? = nil
         let loggedUser = try! getLoggedUser()
         
         var isFriend = false

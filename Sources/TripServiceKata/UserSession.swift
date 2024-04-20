@@ -2,9 +2,9 @@ import Foundation
 
 class UserSession
 {
-    static var sharedInstance:UserSession = UserSession()
+    static var sharedInstance: UserSession = UserSession()
     
-    func isUserLoggedIn(_ user:User) throws -> Bool
+    func isUserLoggedIn(_ user: User) throws -> Bool
     {
         throw UnitTestErrorType.dependendClassCallDuringUnitTest
     }

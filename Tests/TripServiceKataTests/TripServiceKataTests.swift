@@ -23,7 +23,7 @@ class TripServiceKataTests: XCTestCase {
         let user = User()
 
         XCTAssertNoThrow(
-            try prepareTripServiceWhenUserIsLoggedIn()?.getTripsByUser(user),
+            try prepareTripServiceWhenUserIsLoggedIn(user)?.getTripsByUser(user),
             "no message"
         )
     }
@@ -33,7 +33,7 @@ class TripServiceKataTests: XCTestCase {
         let friend1 = User()
         user.addFriend(friend1)
         
-        let trips = try prepareTripServiceWhenUserIsLoggedIn()?.getTripsByUser(user)
+        let trips = try prepareTripServiceWhenUserIsLoggedIn(user)?.getTripsByUser(user)
         
         XCTAssertEqual(trips?.count, nil)
     }
@@ -41,14 +41,8 @@ class TripServiceKataTests: XCTestCase {
     func test_AddingAFriend_WhichIsTheSameUser_tripsIsNil() throws {
         let user = User()
         user.addFriend(user)
-        let tripService = prepareTripServiceWhenUserIsLoggedIn()
-        
-        guard let userSessionMock = tripService?.userSession as? UserSessionMock else {
-            XCTFail()
-            return
-        }
-        
-        userSessionMock.user = user
+        let tripService = prepareTripServiceWhenUserIsLoggedIn(user)
+    
         
         tripService?.tripDAO = TripDAOMock()
         let trips = try tripService?.getTripsByUser(user)
@@ -59,8 +53,8 @@ class TripServiceKataTests: XCTestCase {
 }
 
 extension TripServiceKataTests {
-    func prepareTripServiceWhenUserIsLoggedIn() -> TestableTripService?{
-        tripService?.userSession = UserSessionMock()
+    func prepareTripServiceWhenUserIsLoggedIn(_ user: User = User()) -> TestableTripService?{
+        tripService?.userSession = UserSessionMock(user: user)
         return tripService
     }
 }
@@ -73,7 +67,12 @@ class TripDAOMock: TripDAO {
 }
 
 class UserSessionMock: UserSession {
-    weak var user: User?
+    let user: User
+    
+    init(user: User) {
+        self.user = user
+    }
+    
     override func getLoggedUser() throws -> User? {
         user
     }
@@ -83,8 +82,8 @@ class UserSessionMock: UserSession {
 }
 
 class TestableTripService: TripService {
-    weak var userSession: UserSession?
-    weak var tripDAO: TripDAO?
+    var userSession: UserSession?
+    var tripDAO: TripDAO?
 
     override func getLoggedUser() throws -> User? {
         try! userSession?.getLoggedUser()
